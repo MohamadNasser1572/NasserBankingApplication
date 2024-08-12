@@ -71,6 +71,7 @@ public class AccountServiceimpl implements AccountService {
 
     @Override
     public void deleteAccount(Long id) {
+        @SuppressWarnings("unused")
         Account account = accountRepository
                 .findById(id)
                 .orElseThrow(() -> new RuntimeException("Account not found"));
