@@ -1,8 +1,7 @@
-package com.canny.nasserbankingapplication.service.impl;
+package com.canny.nasserbankingapplication.service;
 
 import com.canny.nasserbankingapplication.entity.Account;
 import com.canny.nasserbankingapplication.repository.AccountRepository;
-import com.canny.nasserbankingapplication.service.AccountService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
