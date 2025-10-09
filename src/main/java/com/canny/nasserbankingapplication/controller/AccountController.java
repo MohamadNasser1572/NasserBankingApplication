@@ -24,7 +24,7 @@ public class AccountController {
         return new ResponseEntity<>(accountService.createAccount(accountDto), HttpStatus.CREATED);
     }
 
-    // Get Account REST API   
+    // Get Account REST API
     @GetMapping("/{id}")
     public ResponseEntity<AccountDto> getAccountById(@PathVariable Long id) {
         AccountDto accountDto = accountService.getAccountById(id);
@@ -55,6 +55,13 @@ public class AccountController {
     public ResponseEntity<List<AccountDto>> getAllAccounts() {
         List<AccountDto> accounts = accountService.getAllAccounts();
         return ResponseEntity.ok(accounts);
+    }
+
+    // Update Account REST API
+    @PutMapping("/{id}")
+    public ResponseEntity<AccountDto> updateAccount(@PathVariable Long id, @RequestBody AccountDto accountDto) {
+        AccountDto updatedAccount = accountService.updateAccount(id, accountDto);
+        return ResponseEntity.ok(updatedAccount);
     }
 
     // Delete Account REST API by ID
