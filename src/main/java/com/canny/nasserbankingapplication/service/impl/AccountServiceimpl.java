@@ -27,6 +27,24 @@ public class AccountServiceimpl implements AccountService {
     }
 
     @Override
+    public AccountDto updateAccount(Long id, AccountDto accountDto) {
+        Account account = accountRepository
+                .findById(id)
+                .orElseThrow(() -> new RuntimeException("Account not found"));
+
+        // Update account holder name if provided
+        if (accountDto.getAccountHolderName() != null) {
+            account.setAccountHolderName(accountDto.getAccountHolderName());
+        }
+
+        // Update balance if provided
+        account.setBalance(accountDto.getBalance());
+
+        Account savedAccount = accountRepository.save(account);
+        return AccountMapper.mapToAccountDto(savedAccount);
+    }
+
+    @Override
     public AccountDto getAccountById(Long id) {
         Account account = accountRepository
                 .findById(id)
@@ -51,7 +69,7 @@ public class AccountServiceimpl implements AccountService {
                 .findById(id)
                 .orElseThrow(() -> new RuntimeException("Account not found"));
 
-        if(account.getBalance() < amount) {
+        if (account.getBalance() < amount) {
             throw new RuntimeException("Insufficient balance");
         }
 
